@@ -184,7 +184,7 @@
 - ✅ **Full-Screen 3D Viewport**: Smooth R3F canvas setup with orbit controls and infinite grid.
 - ✅ **Nomad/Blender PBR Shading**: Advanced `MeshPhysicalMaterial` presets and real numerical parameter sliders (`metalness`, `roughness`, `clearcoat`, `transmission`, `ior`).
 - ✅ **Order-Independent CSG Engine**: Grouping/Ungrouping of Solid and Hole primitives.
-- ✅ **12-Edge Parametric Beveling**: Independent edge fillet controls.
+- ✅ **Experimental Fillet Prototype (Trying Mode)**: Primitive box edge beveling prototype using boolean cutter brushes (`geometryBuilder.js`).
 - ✅ **Procedural Microtexture**: Fractal noise normal map generator for anodized aluminum grain.
 - ✅ **Studio Lightformer Rig**: Parametric softbox key/edge/fill lights with negative fill flags.
 - ✅ **Decoupled Unlit Background**: Independent 2D screen-space gradient background.
@@ -193,15 +193,18 @@
 - ✅ **Cloud Deployment**: Production build deployed on Vercel via GitHub CI/CD with dependency overrides.
 
 ## Work Remaining (Future Technical Roadmap)
-1. **Smart Measurement & Distance Tool (SolidWorks Style)**:
+1. **Production-Grade Edge Filleting & Chamfering Engine**:
+   - *Current Status*: Fillet is in **experimental trying mode** (cutting primitive box edges prior to CSG grouping).
+   - *Planned Feature*: Full post-CSG B-Rep edge filleting and chamfering engine that can apply variable radii to complex boolean intersection seams.
+2. **Smart Measurement & Distance Tool (SolidWorks Style)**:
    - Dynamic 3D bounding box dimension callouts, object-to-object distance vectors, and point-to-point tape measure tool.
-2. **Full-Stack Backend Integration**:
+3. **Full-Stack Backend Integration**:
    - User authentication, project save/load to cloud database (Node.js/Express + MongoDB or Supabase).
-3. **CSG Web Worker / WASM Offloading**:
+4. **CSG Web Worker / WASM Offloading**:
    - Offloading heavy boolean geometry calculations to background Web Workers to guarantee 60FPS UI thread performance on ultra-complex meshes.
-4. **3D File Export Options**:
+5. **3D File Export Options**:
    - Integrating `STLExporter`, `OBJExporter`, and `GLTFExporter` to allow 3D printing and exporting to external software like Blender.
-5. **Per-Subshape Multi-Material Booleans**:
+6. **Per-Subshape Multi-Material Booleans**:
    - Retaining individual sub-shape surface colors/materials after boolean grouping operations.
 
 ---

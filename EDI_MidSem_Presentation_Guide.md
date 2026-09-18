@@ -40,8 +40,9 @@
 - **Q: How are metal reflections created without downloading heavy HDRIs?**
   - *A: We generate procedural PMREM environment maps using emissive lightformer softboxes and pitch-black negative fill flags.*
 
-## 👥 6. Division of Responsibilities
-- **Speaker 1**: Problem Definition, Objectives & SDGs.
-- **Speaker 2**: CSG Boolean Methodology & 12-Edge Beveling.
-- **Speaker 3**: PBR Shading, Studio Lightformers & Decoupled Background.
-- **Speaker 4**: Tech Stack, Architecture, Live Demo & Evaluator Q&A.
+## 👥 6. Division of Responsibilities (Suggested Speaker Assignment)
+
+- **Speaker 1 (Intro & Problem Statement)**: Problem Definition, Gaps in existing CAD tools, Objectives, SDGs (9, 12, 4).
+- **Speaker 2 (Methodology & CSG Engine)**: CSG Booleans, Order-independent evaluation, Experimental Fillet Prototype (Trying Mode).
+- **Speaker 3 (Rendering Pipeline & Studio Lighting)**: PBR Shading, Lightformer PMREM Rig, Decoupled Unlit Background, Procedural Microtexture.
+- **Speaker 4 (Architecture, Live Demo & Q&A)**: Tech stack (React, R3F, Zustand, Vercel), Live Demo execution, handling evaluator questions & future roadmap (Production Filleting/Chamfering, Measurement tool).
