@@ -54,6 +54,31 @@ The goal was to create a lightweight, browser-based 3D product concepting tool t
   - `Copy` (`Ctrl+C`), `Paste` (`Ctrl+V`), and `Duplicate` (`Ctrl+D`) with position offsets.
   - `Delete` / `Backspace` keybindings.
 
+### Phase 7: Photorealistic Apple-Style Rendering Upgrade (WebGPU Experiment)
+- **Thought & Challenge**: The user requested high-end Apple product photography renders (satin anodized aluminum, optical glass, soft studio lighting) without the harshness of standard WebGL renders.
+- **Engineering Choice**: Created an experimental branch (`Simple 3D - WebGPU Experiment`). Implemented a two-pronged approach: a real-time studio viewport upgrade and an optional path tracer overlay.
+- **Root Cause & Diagnostic (CG Fake Look)**:
+  - *Problem*: Standard WebGL materials look mathematically perfect and mirror-like.
+  - *Solution 1 (Microtexture)*: Added `textureGenerator.js` to create extremely fine procedural noise maps. These maps add microscopic grain to the normal map of materials, breaking up mirrored reflections just like precision-machined anodized aluminum.
+  - *Solution 2 (Lighting)*: Overhauled `Scene.jsx` to use soft `Lightformer` area lights (Key, Edge, Fill, and Negative Fill flags) to control reflection contours.
+
+### Phase 8: Studio PBR Render Pipeline, Decoupled Background & Vercel Deployment
+- **Thought & Challenge**: Build a signature Studio Render Rig with real numeric material sliders (replacing dropdown presets), RectAreaLights, unlit decoupled background, 60FPS transform gizmo sync without snapback, and automated cloud deployment.
+- **Key Implementations**:
+  1. **Direct PBR Material Sliders**: Replaced dropdown presets with direct per-object numeric sliders (`metalness`, `roughness`, `clearcoat`, `transmission`, `ior`).
+  2. **Procedural Lightformer PMREM Rig**: Exposed Key, Edge, and Fill intensities as live Studio Rig sliders. The environment map (PMREM) dynamically updates on slider changes without constant `frames={Infinity}` overhead.
+  3. **RectAreaLights**: Added `<rectAreaLight>` components matching lightformers to produce elongated rectangular specular highlights on metal surfaces without point hotspots.
+  4. **Decoupled Unlit 2D Background (Option A)**:
+     - *Requirement*: Background must remain a flat/gradient color completely unaffected by scene lighting/lightformers, while objects receive full IBL reflections.
+     - *Solution*: Created `BackgroundGradient` component using a 2D `CanvasTexture` mapped directly to `scene.background`. This ensures the background is screen-space unlit, avoiding horizon lines and lighting washouts, while keeping the shadow catcher floor independent.
+  5. **Z-Fighting Grid Fix**: Re-spaced ground plane Y-coordinates (`Grid` at `Y = -0.74`, `ContactShadows` at `Y = -0.745`, `Floor` at `Y = -0.75`) to eliminate depth precision flickering on camera zoom out.
+  6. **Transform Controls Real-Time Sync**:
+     - *Problem*: Dragging transform gizmos mutated Three.js mesh coordinates, but React re-renders reset the mesh to the un-commited Zustand store position, causing snapbacks before pressing `Enter`.
+     - *Solution*: Wired `onObjectChange` callback to `<TransformControls>` in `PrimitiveMesh` and `CSGMesh`, continuously updating Zustand store coordinates during gizmo movement.
+  7. **Vercel Cloud Deployment Fix**:
+     - *Problem*: Vercel build failed with `ERESOLVE` due to `three-gpu-pathtracer` requesting `three@>=0.180.0`.
+     - *Solution*: Added `vercel.json` with `"installCommand": "npm install --legacy-peer-deps"` and `"overrides"` in `package.json`. Successfully deployed to GitHub repository (`https://github.com/pranjali25-hub/Simple3D.2.git`).
+
 ---
 
 ## 3. What Works (Current System Capabilities)
