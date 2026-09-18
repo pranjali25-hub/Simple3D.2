@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Project Journey & Technical Retrospective.md",
+                "file": "EDI_MidSem_Master_Report.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Project Journey & Technical Retrospective"
+              "title": "EDI_MidSem_Master_Report"
             }
           }
         ],
@@ -206,14 +206,15 @@
   "active": "d9744b148a3ae621",
   "lastOpenFiles": [
     "EDI 1st Review Preparation.md",
-    "Project Plan.md",
-    "Project Journey & Technical Retrospective.md",
+    "EDI_MidSem_Master_Report.md",
+    "FF180 Form.md",
+    "Phase 4 Details.md",
     "Phase 3 Details.md",
     "Phase 2 Details.md",
     "Phase 1 Details.md",
-    "FF180 Form.md",
+    "Project Plan.md",
+    "Project Journey & Technical Retrospective.md",
     "Untitled",
-    "Phase 4 Details.md",
     "Welcome.md"
   ]
 }

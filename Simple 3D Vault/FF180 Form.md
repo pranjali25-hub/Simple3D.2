@@ -33,12 +33,12 @@ Realistic product visualization depends on lighting, surface materials, shadows,
 
 ### Comparative Literature & System Matrix
 
-| System / Literature | Modeling Approach | Visual Shading & Rendering | Key Limitation | Relevance to Project |
-|---|---|---|---|---|
-| **Autodesk Tinkercad** | Primitive-based CSG Booleans | Basic non-PBR Shading; Flat Lighting | Low visual fidelity; non-presentation ready. | Primary CSG workflow model. |
-| **Blender** | Mesh & B-Rep Modeling | Advanced Cycles/EEVEE PBR Raytracing | Heavy installation; steep learning curve. | Target visual quality standard. |
-| **Nomad Sculpt** | Digital Clay Sculpting | Studio Lighting & SSAO Shading | Focused on organic sculpting rather than CAD block concepting. | UI & Studio Shader inspiration. |
-| **Proposed System** | **CSG Booleans + 12-Edge Bevels** | **PBR Shaders + Procedural Studio Lightformers + SSAO** | **Optimized for browser concepting (Non-B-Rep CAD)** | **Unified Zero-Install Platform** |
+| System / Literature    | Modeling Approach                 | Visual Shading & Rendering                              | Key Limitation                                                 | Relevance to Project              |
+| ---------------------- | --------------------------------- | ------------------------------------------------------- | -------------------------------------------------------------- | --------------------------------- |
+| **Autodesk Tinkercad** | Primitive-based CSG Booleans      | Basic non-PBR Shading; Flat Lighting                    | Low visual fidelity; non-presentation ready.                   | Primary CSG workflow model.       |
+| **Blender**            | Mesh & B-Rep Modeling             | Advanced Cycles/EEVEE PBR Raytracing                    | Heavy installation; steep learning curve.                      | Target visual quality standard.   |
+| **Nomad Sculpt**       | Digital Clay Sculpting            | Studio Lighting & SSAO Shading                          | Focused on organic sculpting rather than CAD block concepting. | UI & Studio Shader inspiration.   |
+| **Proposed System**    | **CSG Booleans + 12-Edge Bevels** | **PBR Shaders + Procedural Studio Lightformers + SSAO** | **Optimized for browser concepting (Non-B-Rep CAD)**           | **Unified Zero-Install Platform** |
 
 ### Research Gap & Rationale
 Despite the availability of individual 3D modelling and rendering technologies, an unaddressed opportunity exists to integrate rapid primitive-based CSG modelling and presentation-focused rendering into a single lightweight, browser-based platform. The proposed system addresses this requirement by combining these capabilities into a unified interactive application.
