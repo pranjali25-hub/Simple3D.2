@@ -152,25 +152,33 @@ export default function PrimitiveMesh({ object }) {
     return null;
   };
 
+  const updateObjectTransform = useStore((state) => state.updateObjectTransform);
+
   const isPrimarySelection = selectedObjectIds[selectedObjectIds.length - 1] === object.id;
+
+  const handleTransformChange = React.useCallback(() => {
+    if (mesh) {
+      const p = mesh.position;
+      const r = mesh.rotation;
+      const s = mesh.scale;
+      updateObjectTransform(object.id, {
+        position: [p.x, p.y, p.z],
+        rotation: [r.x, r.y, r.z],
+        scale: [s.x, s.y, s.z],
+      });
+    }
+  }, [mesh, object.id, updateObjectTransform]);
 
   React.useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Enter' && isPrimarySelection && mesh) {
-        const { position: p, rotation: r, scale: s } = mesh;
-        useStore.getState().updateObjectTransform(object.id, {
-          position: [p.x, p.y, p.z],
-          rotation: [r.x, r.y, r.z],
-          scale: [s.x, s.y, s.z],
-        });
-        
+      if (e.key === 'Enter' && isPrimarySelection) {
         useStore.getState().selectObject(null);
       }
     };
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isPrimarySelection, object.id, mesh]);
+  }, [isPrimarySelection]);
 
   if (isPrimarySelection) {
     return (
@@ -180,6 +188,7 @@ export default function PrimitiveMesh({ object }) {
             object={mesh}
             mode={activeTool}
             size={0.8}
+            onObjectChange={handleTransformChange}
           />
         )}
         <group ref={setMesh} position={position} rotation={rotation} scale={scale}>

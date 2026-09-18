@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useMemo } from 'react';
 import { OrbitControls, Grid, Environment, Lightformer, ContactShadows, Backdrop } from '@react-three/drei';
-import { EffectComposer, SSAO, Bloom, BrightnessContrast, HueSaturation, DepthOfField } from '@react-three/postprocessing';
+import { EffectComposer, SSAO, Bloom, BrightnessContrast, HueSaturation } from '@react-three/postprocessing';
 import { useThree, useFrame } from '@react-three/fiber';
 import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib';
 import * as THREE from 'three';
@@ -206,25 +206,25 @@ export default function Scene() {
 
       {presentationSettings.showGrid && (
         <Grid 
-          position={[0, -0.749, 0]} 
+          position={[0, -0.74, 0]} 
           args={[30, 30]} 
           cellSize={0.5} 
-          cellThickness={0.5} 
-          cellColor="#444444" 
+          cellThickness={0.8} 
+          cellColor="#555555" 
           sectionSize={2.5} 
-          sectionThickness={1} 
-          sectionColor="#777777" 
-          fadeDistance={20}
+          sectionThickness={1.2} 
+          sectionColor="#888888" 
+          fadeDistance={30}
           infiniteGrid
         />
       )}
 
       {/* Contact Shadows — Soft ground-contact darkening */}
       <ContactShadows
-        position={[0, -0.748, 0]}
-        opacity={0.85}
+        position={[0, -0.745, 0]}
+        opacity={0.7}
         scale={20}
-        blur={2.0}
+        blur={2.5}
         far={3}
         resolution={512}
       />
@@ -268,8 +268,6 @@ export default function Scene() {
             luminanceSmoothing={0.4}
             mipmapBlur
           />
-          {/* Optional shallow DOF */}
-          <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} />
           {/* Color Grade */}
           <BrightnessContrast brightness={0} contrast={contrast - 1} />
           <HueSaturation saturation={saturation - 1} hue={0} />
