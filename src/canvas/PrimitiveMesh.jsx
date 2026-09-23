@@ -143,7 +143,37 @@ export default function PrimitiveMesh({ object }) {
       return (
         <mesh castShadow receiveShadow>
           <cylinderGeometry 
-            args={[parameters.radiusTop || 0.5, parameters.radiusBottom || 0.5, parameters.height || 1.4, 128]} 
+            args={[parameters.radiusTop || 0.5, parameters.radiusBottom || 0.5, parameters.height || 1.4, 64]} 
+          />
+          {renderMaterial()}
+        </mesh>
+      );
+    }
+    if (primitiveType === 'cone') {
+      return (
+        <mesh castShadow receiveShadow>
+          <coneGeometry 
+            args={[parameters.radius || 0.6, parameters.height || 1.4, 64]} 
+          />
+          {renderMaterial()}
+        </mesh>
+      );
+    }
+    if (primitiveType === 'torus') {
+      return (
+        <mesh castShadow receiveShadow>
+          <torusGeometry 
+            args={[parameters.radius || 0.6, parameters.tube || 0.25, 32, 64]} 
+          />
+          {renderMaterial()}
+        </mesh>
+      );
+    }
+    if (primitiveType === 'icosahedron') {
+      return (
+        <mesh castShadow receiveShadow>
+          <icosahedronGeometry 
+            args={[parameters.radius || 0.75, Math.floor(parameters.detail || 0)]} 
           />
           {renderMaterial()}
         </mesh>

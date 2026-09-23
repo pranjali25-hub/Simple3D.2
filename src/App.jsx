@@ -72,7 +72,7 @@ export default function App() {
       {/* Immersive 3D Viewport Background */}
       <Viewport />
 
-      {/* Floating Nomad-style Menus */}
+      {/* Floating UI Menus */}
       <TopBar />
       <RightToolbox />
       <LeftPropertiesPanel />
@@ -81,7 +81,7 @@ export default function App() {
       {/* Floating Instructions/Help overlay */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 p-4 rounded-xl bg-workspace-panel/80 backdrop-blur-md border border-white/5 pointer-events-none max-w-md w-full shadow-xl z-0 text-center">
         <h1 className="text-xs font-semibold text-white tracking-wide">3D Product Concepting Tool</h1>
-        <p className="text-[9px] text-gray-400 font-mono tracking-wider uppercase mt-0.5">Nomad Sculpt Render & Tinkercad CSG</p>
+        <p className="text-[9px] text-gray-400 font-mono tracking-wider uppercase mt-0.5">Advanced PBR Rendering & Boolean CSG</p>
         
         <div className="mt-3 space-y-1.5 text-[10px] text-gray-300">
           <div>🖱️ <span className="font-semibold text-white">Left-Drag</span>: Rotate | <span className="font-semibold text-white">Right-Drag</span>: Pan | <span className="font-semibold text-white">Scroll</span>: Zoom</div>

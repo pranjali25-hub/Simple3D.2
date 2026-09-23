@@ -96,23 +96,20 @@ export default function TopBar() {
         <RefreshCw size={15} className={presentationSettings.autoRotate ? 'animate-spin-slow' : ''} />
       </button>
 
-      {/* GPU Path Tracing / Raytracing Mode Toggle */}
-      <button
-        onClick={() => updatePresentationSettings({ pathTracing: !presentationSettings.pathTracing })}
-        className={`px-2.5 py-1 rounded-lg border transition-all flex items-center gap-1.5 font-medium text-[11px] ${
-          presentationSettings.pathTracing
-            ? 'bg-amber-500/20 border-amber-400 text-amber-300 shadow-lg shadow-amber-500/10'
-            : 'border-white/5 text-gray-400 hover:text-amber-300 hover:bg-workspace-hover'
-        }`}
-        title="Toggle GPU Photorealistic Raytracing (Blender Cycles Mode)"
-      >
-        <Sparkles size={13} className={presentationSettings.pathTracing ? 'text-amber-400 animate-pulse' : ''} />
-        <span>{presentationSettings.pathTracing ? 'Raytracing ON' : 'Raytracing'}</span>
-      </button>
-
       {/* Capture Screen Button */}
       <button
-        onClick={triggerCaptureRender}
+        onClick={() => {
+          const canvas = document.querySelector('canvas');
+          if (canvas) {
+            const dataUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = `Simple3D_Render_${Date.now()}.png`;
+            link.href = dataUrl;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }
+        }}
         className="ml-2 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-workspace-accent text-white font-medium hover:bg-indigo-500 shadow-md shadow-indigo-600/20 active:scale-95 transition-all text-[11px]"
       >
         <Camera size={14} />

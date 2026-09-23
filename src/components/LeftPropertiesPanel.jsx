@@ -322,6 +322,27 @@ export default function LeftPropertiesPanel() {
             <div><label className="text-[10px] text-gray-500 font-mono">Height</label><input type="range" min="0.1" max="5" step="0.1" value={selectedObject.parameters.height} onChange={(e) => handleParamChange('height', e.target.value)} className="w-full accent-workspace-accent" /></div>
           </div>
         )}
+
+        {selectedObject.primitiveType === 'cone' && (
+          <div className="space-y-2">
+            <div><label className="text-[10px] text-gray-500 font-mono">Radius</label><input type="range" min="0.1" max="5" step="0.1" value={selectedObject.parameters.radius} onChange={(e) => handleParamChange('radius', e.target.value)} className="w-full accent-workspace-accent" /></div>
+            <div><label className="text-[10px] text-gray-500 font-mono">Height</label><input type="range" min="0.1" max="5" step="0.1" value={selectedObject.parameters.height} onChange={(e) => handleParamChange('height', e.target.value)} className="w-full accent-workspace-accent" /></div>
+          </div>
+        )}
+
+        {selectedObject.primitiveType === 'torus' && (
+          <div className="space-y-2">
+            <div><label className="text-[10px] text-gray-500 font-mono">Radius</label><input type="range" min="0.1" max="5" step="0.1" value={selectedObject.parameters.radius} onChange={(e) => handleParamChange('radius', e.target.value)} className="w-full accent-workspace-accent" /></div>
+            <div><label className="text-[10px] text-gray-500 font-mono">Tube Thickness</label><input type="range" min="0.05" max="2" step="0.05" value={selectedObject.parameters.tube} onChange={(e) => handleParamChange('tube', e.target.value)} className="w-full accent-workspace-accent" /></div>
+          </div>
+        )}
+
+        {selectedObject.primitiveType === 'icosahedron' && (
+          <div className="space-y-2">
+            <div><label className="text-[10px] text-gray-500 font-mono">Radius</label><input type="range" min="0.1" max="5" step="0.1" value={selectedObject.parameters.radius} onChange={(e) => handleParamChange('radius', e.target.value)} className="w-full accent-workspace-accent" /></div>
+            <div><label className="text-[10px] text-gray-500 font-mono">Subdivisions</label><input type="range" min="0" max="5" step="1" value={selectedObject.parameters.detail || 0} onChange={(e) => handleParamChange('detail', e.target.value)} className="w-full accent-workspace-accent" /></div>
+          </div>
+        )}
       </div>
 
     </div>

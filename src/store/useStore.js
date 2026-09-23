@@ -285,6 +285,7 @@ export const useStore = create((set, get) => ({
       type: "csg",
       booleanMode: primarySolid.booleanMode || "solid",
       materialMode: primarySolid.materialMode || "polishedMetal",
+      materialParams: primarySolid.materialParams ? JSON.parse(JSON.stringify(primarySolid.materialParams)) : undefined,
       position: [0, 0, 0],
       rotation: [0, 0, 0],
       scale: [1, 1, 1],

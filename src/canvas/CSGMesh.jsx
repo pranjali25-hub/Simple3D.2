@@ -37,6 +37,24 @@ function createGeometryForChild(child) {
       child.parameters?.height || 1.4,
       32
     );
+  } else if (child.primitiveType === 'cone') {
+    return new THREE.ConeGeometry(
+      child.parameters?.radius || 0.6,
+      child.parameters?.height || 1.4,
+      32
+    );
+  } else if (child.primitiveType === 'torus') {
+    return new THREE.TorusGeometry(
+      child.parameters?.radius || 0.6,
+      child.parameters?.tube || 0.25,
+      16,
+      32
+    );
+  } else if (child.primitiveType === 'icosahedron') {
+    return new THREE.IcosahedronGeometry(
+      child.parameters?.radius || 0.75,
+      Math.floor(child.parameters?.detail || 0)
+    );
   }
 
   return new THREE.BoxGeometry(1, 1, 1);
@@ -51,6 +69,7 @@ function evaluateCSGGeometry(children) {
 
     const brushes = children.map(child => {
       const geo = createGeometryForChild(child);
+      if (geo.computeBoundsTree) geo.computeBoundsTree();
       const brush = new Brush(geo);
 
       brush.position.set(...(child.position || [0, 0, 0]));
@@ -104,15 +123,26 @@ export default function CSGMesh({ object }) {
 
   if (!geometry) return null;
 
-  const materialMode = object.materialMode || 'polishedMetal';
-  const baseColor = '#e2e8f0';
-  const matProps = MATERIAL_PRESETS[materialMode] || MATERIAL_PRESETS.polishedMetal;
+  const matParams = object.materialParams || {
+    color: '#e2e8f0',
+    metalness: 1.0,
+    roughness: 0.33,
+    clearcoat: 0.0,
+    transmission: 0.0,
+    ior: 1.5,
+  };
 
   const renderMaterial = () => (
     <meshPhysicalMaterial 
-      color={baseColor} 
-      {...matProps} 
-      envMapIntensity={2.5}
+      color={matParams.color} 
+      metalness={matParams.metalness}
+      roughness={matParams.roughness}
+      clearcoat={matParams.clearcoat}
+      transmission={matParams.transmission}
+      ior={matParams.ior}
+      thickness={matParams.transmission > 0 ? 0.5 : 0}
+      transparent={matParams.transmission > 0}
+      envMapIntensity={1.2}
       side={THREE.DoubleSide} 
     />
   );

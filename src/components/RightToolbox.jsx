@@ -1,5 +1,5 @@
 import React from 'react';
-import { Move, RotateCw, Maximize, Box, Circle, Database, Trash2, CopyPlus, Copy, Clipboard } from 'lucide-react';
+import { Move, RotateCw, Maximize, Box, Circle, Database, Triangle, LifeBuoy, Gem, Trash2, CopyPlus, Copy, Clipboard } from 'lucide-react';
 import { useStore } from '../store/useStore';
 
 export default function RightToolbox() {
@@ -49,6 +49,12 @@ export default function RightToolbox() {
       newObject.parameters = { radius: 0.75 };
     } else if (shapeType === 'cylinder') {
       newObject.parameters = { radiusTop: 0.5, radiusBottom: 0.5, height: 1.4 };
+    } else if (shapeType === 'cone') {
+      newObject.parameters = { radius: 0.6, height: 1.4 };
+    } else if (shapeType === 'torus') {
+      newObject.parameters = { radius: 0.6, tube: 0.25 };
+    } else if (shapeType === 'icosahedron') {
+      newObject.parameters = { radius: 0.75, detail: 0 };
     }
 
     addObject(newObject);
@@ -174,6 +180,39 @@ export default function RightToolbox() {
           <Database size={20} className="rotate-90" />
           <span className="absolute right-14 top-1/2 -translate-y-1/2 px-2 py-1 rounded bg-black/90 text-[10px] text-gray-200 border border-white/5 opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-150 whitespace-nowrap">
             Cylinder
+          </span>
+        </button>
+
+        <button
+          onClick={() => handleSpawn('cone')}
+          className="p-3 rounded-xl text-gray-400 hover:text-gray-200 hover:bg-workspace-hover transition-colors group relative"
+          title="Spawn Cone"
+        >
+          <Triangle size={20} />
+          <span className="absolute right-14 top-1/2 -translate-y-1/2 px-2 py-1 rounded bg-black/90 text-[10px] text-gray-200 border border-white/5 opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-150 whitespace-nowrap">
+            Cone
+          </span>
+        </button>
+
+        <button
+          onClick={() => handleSpawn('torus')}
+          className="p-3 rounded-xl text-gray-400 hover:text-gray-200 hover:bg-workspace-hover transition-colors group relative"
+          title="Spawn Torus"
+        >
+          <LifeBuoy size={20} />
+          <span className="absolute right-14 top-1/2 -translate-y-1/2 px-2 py-1 rounded bg-black/90 text-[10px] text-gray-200 border border-white/5 opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-150 whitespace-nowrap">
+            Torus
+          </span>
+        </button>
+
+        <button
+          onClick={() => handleSpawn('icosahedron')}
+          className="p-3 rounded-xl text-amber-400/80 hover:text-amber-300 hover:bg-workspace-hover transition-colors group relative"
+          title="Spawn Complex Polyhedron"
+        >
+          <Gem size={20} />
+          <span className="absolute right-14 top-1/2 -translate-y-1/2 px-2 py-1 rounded bg-black/90 text-[10px] text-gray-200 border border-white/5 opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-150 whitespace-nowrap">
+            Icosahedron
           </span>
         </button>
       </div>

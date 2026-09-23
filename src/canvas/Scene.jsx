@@ -114,18 +114,11 @@ function BackgroundGradient({ topColor, bottomColor }) {
 export default function Scene() {
   const objects = useStore((state) => state.objects);
   const presentationSettings = useStore((state) => state.presentationSettings);
-  const captureRenderTrigger = useStore((state) => state.captureRenderTrigger);
   const orbitControlsRef = useRef();
-  
+
   const { studioRig, exposure, contrast, saturation, bgGradientTop, bgGradientBottom } = presentationSettings;
 
   const { gl } = useThree();
-
-  useEffect(() => {
-    if (captureRenderTrigger > 0) {
-      captureCanvas(gl);
-    }
-  }, [captureRenderTrigger, gl]);
 
   // Forcefully unlock camera controls when nothing is selected
   const selectedObjectIds = useStore((state) => state.uiState.selectedObjectIds);
@@ -269,7 +262,7 @@ export default function Scene() {
             mipmapBlur
           />
           {/* Color Grade */}
-          <BrightnessContrast brightness={0} contrast={contrast - 1} />
+          <BrightnessContrast brightness={exposure - 1} contrast={contrast - 1} />
           <HueSaturation saturation={saturation - 1} hue={0} />
         </EffectComposer>
       )}

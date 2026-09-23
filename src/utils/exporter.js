@@ -10,7 +10,7 @@ export function captureCanvas(gl) {
     
     // Create an anchor element to force download
     const link = document.createElement('a');
-    link.download = `nomad-concept-${Date.now()}.png`;
+    link.download = `Simple3D_Render_${Date.now()}.png`;
     link.href = dataUrl;
     document.body.appendChild(link);
     link.click();

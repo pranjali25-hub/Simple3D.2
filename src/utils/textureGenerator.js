@@ -54,7 +54,7 @@ function fbm(x, y, octaves = 4) {
 
 /**
  * Creates a noise-based roughness map for metallic surface grain.
- * This gives metals the subtle micro-texture visible in Nomad Sculpt renders.
+ * This gives metals a subtle micro-texture visible in high-end renders.
  * 
  * @param {number} size - Texture resolution (e.g., 128)
  * @param {number} baseRoughness - Center roughness value (0-1)
